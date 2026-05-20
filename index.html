@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lê Thị Ý Nhi - Portfolio</title>
+    <style>
+        :root {
+            --bg-white: #FFFFFF;
+            --pastel-blue: #E3F2FD; /* Xanh dương nhạt */
+            --pastel-pink: #FCE4EC; /* Hồng pastel */
+            --text-dark: #2C3E50;
+            --text-muted: #5D6D7E;
+            --accent-blue: #5DADE2;
+            --accent-pink: #F1948A;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-white);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            letter-spacing: 1px;
+        }
+
+        .lang-switcher button {
+            background: var(--pastel-blue);
+            border: 1px solid var(--accent-blue);
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+
+        .lang-switcher button:hover {
+            background: var(--pastel-pink);
+            border-color: var(--accent-pink);
+        }
+
+        section {
+            padding: 100px 10% 60px 10%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--bg-white) 60%, var(--pastel-pink) 100%);
+            min-height: 75vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+            letter-spacing: 1px;
+        }
+
+        .hero .slogan {
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 35px;
+            font-size: 1.15rem;
+            max-width: 600px;
+        }
+
+        .intro-box {
+            background: var(--pastel-blue);
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 800px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            text-align: left;
+            border-left: 5px solid var(--accent-blue);
+        }
+
+        /* Dashboard Section */
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1.8rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 40px;
+            height: 3px;
+            background: var(--accent-pink);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .skill-block {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            border: 1px solid #F2F4F4;
+        }
+
+        .skill-block h3 {
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--pastel-blue);
+            font-size: 1.2rem;
+        }
+
+        .skill-item {
+            margin-bottom: 15px;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+
+        .progress-bar {
+            background: #E5E7E9;
+            height: 8px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            border-radius: 5px;
+        }
+
+        .bg-blue { background: var(--accent-blue); }
+        .bg-pink { background: var(--accent-pink); }
+
+        /* Pillars Section */
+        .pillars {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .pillar-card {
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+        }
+
+        .p-blue { background-color: var(--pastel-blue); border-top: 4px solid var(--accent-blue); }
+        .p-pink { background-color: var(--pastel-pink); border-top: 4px solid var(--accent-pink); }
+        .p-white { background-color: var(--bg-white); border: 1px solid var(--pastel-pink); border-top: 4px solid var(--accent-pink); }
+
+        .pillar-card h3 { margin-bottom: 12px; font-size: 1.1rem; }
+        .pillar-card p { font-size: 0.95rem; color: var(--text-dark); }
+
+        /* Projects Section */
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .project-item {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #E5E7E9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .project-btn {
+            background: var(--text-dark);
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background 0.3s;
+            white-space: nowrap;
+        }
+
+        .project-btn:hover {
+            background: var(--accent-pink);
+        }
+
+        /* Footer Section */
+        footer {
+            background: var(--pastel-pink);
+            padding: 40px 10%;
+            text-align: center;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+
+        footer h2 { margin-bottom: 8px; font-size: 1.6rem; letter-spacing: 1px; }
+        footer .footer-slogan { margin-bottom: 25px; color: var(--text-muted); font-size: 1rem; }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            font-size: 1rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            background: var(--bg-white);
+            color: var(--accent-blue);
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 15px 20px; }
+            section { padding: 80px 5% 40px 5%; }
+            .hero h1 { font-size: 2rem; }
+            .project-item { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .contact-info { flex-direction: column; gap: 10px; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">PORTFOLIO</div>
+        <div class="lang-switcher">
+            <button id="langBtn" onclick="toggleLanguage()">EN | International</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1 id="hero-title">LÊ THỊ Ý NHI</h1>
+        <p id="hero-subtitle" style="font-weight: 600; color: var(--text-dark); margin-bottom: 5px; font-size: 1.2rem;">Chuyên Viên Tư Vấn & Trải Nghiệm Khách Hàng Cao Cấp</p>
+        <p class="slogan" id="hero-slogan">"Sự chuẩn xác của dữ liệu — Sự tinh tế của tư duy Content — Sự tận tâm từ trái tim."</p>
+        
+        <div class="intro-box">
+            <p id="hero-intro">Tôi là một chuyên viên tư vấn thế hệ mới, định vị bản thân bằng sự giao thoa giữa kỷ luật hành chính và khả năng thấu cảm sâu sắc. Tôi không chỉ hỗ trợ khách hàng, tôi kiến tạo những trải nghiệm mua sắm đáng tin cậy dựa trên việc thấu hiểu nhu cầu thực tế.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="section-title" id="title-skills">Bảng Thông Số Năng Lực</h2>
+        <div class="skills-container">
+            <div class="skill-block">
+                <h3 id="h-hard-skills">Kỹ Năng Cứng Bắt Buộc</h3>
+                <div class="skill-item">
+                    <div class="skill-info"><span id="sk-inv">Quản lý Vận hành & Kho bãi (Excel)</span><span>100%</span></div>
+                    <div class="progress-bar"><div class="progress bg-blue" style="width: 100%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span id="sk-merch">Trưng bày & Bảo quản sản phẩm</span><span>95%</span></div>
+                    <div class="progress-bar"><div class="progress bg-blue" style="width: 95%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span id="sk-sell">Quy trình Bán hàng & Tư vấn chuyên sâu</span><span>90%</span></div>
+                    <div class="progress-bar"><div class="progress bg-blue" style="width: 90%"></div></div>
+                </div>
+            </div>
+
+            <div class="skill-block">
+                <h3 id="h-soft-skills">Kỹ Năng Mềm Cốt Lõi</h3>
+                <div class="skill-item">
+                    <div class="skill-info"><span id="sk-detail">Tỉ mỉ & Chú ý đến chi tiết</span><span>100%</span></div>
+                    <div class="progress-bar"><div class="progress bg-pink" style="width: 100%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span id="sk-ethic">Đạo đức làm việc & Sự trung thực</span><span>100%</span></div>
+                    <div class="progress-bar"><div class="progress bg-pink" style="width: 100%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span id="sk-prob">Giải quyết vấn đề & Khiếu nại</span><span>95%</span></div>
+                    <div class="progress-bar"><div class="progress bg-pink" style="width: 95%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span id="sk-adapt">Khả năng thích nghi & Phản biện</span><span>90%</span></div>
+                    <div class="progress-bar"><div class="progress bg-pink" style="width: 90%"></div></div>
+                </div>
+            </div>
+
+            <div class="skill-block">
+                <h3 id="h-high-skills">Hiệu Suất Cao & Kỹ Thuật Số</h3>
+                <div class="skill-item">
+                    <div class="skill-info"><span id="sk-ai">Công cụ AI (ChatGPT, Claude)</span><span>95%</span></div>
+                    <div class="progress-bar"><div class="progress bg-blue" style="width: 95%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span id="sk-data">Phân tích dữ liệu & Hệ thống CRM</span><span>90%</span></div>
+                    <div class="progress-bar"><div class="progress bg-blue" style="width: 90%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span id="sk-content">Sáng tạo nội dung & Thiết kế đồ họa</span><span>90%</span></div>
+                    <div class="progress-bar"><div class="progress bg-blue" style="width: 90%"></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background-color: #FAFAFA;">
+        <h2 class="section-title" id="title-values">Hệ Thống Giá Trị Cam Kết</h2>
+        <div class="pillars">
+            <div class="pillar-card p-blue">
+                <h3 id="p1-title">📊 VẬN HÀNH CHUẨN XÁC</h3>
+                <p id="p1-desc">Cam kết kiểm soát hệ thống hàng hóa, công cụ dụng cụ nhập - xuất - tồn mỗi ngày một cách minh bạch. Biến các con số khô khan thành nền tảng của sự tin cậy.</p>
+            </div>
+            <div class="pillar-card p-pink">
+                <h3 id="p2-title">🎨 THẨM MỸ & BẢO QUẢN</h3>
+                <p id="p2-desc">Tận dụng tư duy sáng tạo để trưng bày sản phẩm thu hút thị giác từ cái nhìn đầu tiên, đồng thời tuân thủ nghiêm ngặt quy trình bảo quản tiêu chuẩn cao cấp.</p>
+            </div>
+            <div class="pillar-card p-white">
+                <h3 id="p3-title">🤝 TƯ VẤN THẤU CẢM</h3>
+                <p id="p3-desc">Lắng nghe để phân tích Insight, giới thiệu sản phẩm đúng nhu cầu và giải quyết khiếu nại bằng sự điềm tĩnh, chuyên nghiệp, đặt khách hàng làm trọng tâm.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="section-title" id="title-projects">Kho Minh Chứng Dự Án</h2>
+        <div class="project-list">
+            <div class="project-item">
+                <div>
+                    <strong id="pj1-title">Báo Cáo Chiến Lược Vận Hành & Tối Ưu Trải Nghiệm Khách Hàng [Report]</strong>
+                    <p id="pj1-desc" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;">Lộ trình phát triển năng lực tư vấn cao cấp và quy trình phục vụ khách hàng chuẩn mực.</p>
+                </div>
+                <a href="#" class="project-btn" id="pj1-btn">Xem Dự Án</a>
+            </div>
+            <div class="project-item">
+                <div>
+                    <strong id="pj2-title">Hệ Thống Phương Pháp Luận Tư Vấn Dựa Trên Insight [Blueprint]</strong>
+                    <p id="pj2-desc" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;">Bộ tài liệu phân tích tâm lý tiêu dùng, kịch bản giao tiếp giải quyết tình huống từ chối và xử lý khiếu nại.</p>
+                </div>
+                <a href="#" class="project-btn" id="pj2-btn">Xem Dự Án</a>
+            </div>
+            <div class="project-item">
+                <div>
+                    <strong id="pj3-title">Tối Ưu Hóa Quản Lý Tài Sản & Hệ Thống Báo Cáo [Data Sheet]</strong>
+                    <p id="pj3-desc" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;">Minh chứng ứng dụng công cụ AI và Excel nâng cao trong việc theo dõi, báo cáo dữ liệu kho bãi chính xác.</p>
+                </div>
+                <a href="#" class="project-btn" id="pj3-btn">Xem Dự Án</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <h2 id="ft-name">LÊ THỊ Ý NHI</h2>
+        <p class="footer-slogan" id="ft-slogan">Hãy cùng nhau tạo nên những trải nghiệm khách hàng xuất sắc!</p>
+        
+        <div class="contact-info">
+            <a href="mailto:aerikael1112@gmail.com" class="contact-item">📧 aerikael1112@gmail.com</a>
+            <a href="tel:0326352270" class="contact-item">📞 0326352270</a>
+            <a href="https://www.linkedin.com/in/le-vivian-3673033b4?trk=contact" target="_blank" class="contact-item">🔗 LinkedIn Profile</a>
+        </div>
+    </footer>
+
+    <script>
+        let currentLang = 'vi';
+
+        const dictionary = {
+            vi: {
+                btn: "EN | International",
+                heroSubtitle: "Chuyên Viên Tư Vấn & Trải Nghiệm Khách Hàng Cao Cấp",
+                heroSlogan: '"Sự chuẩn xác của dữ liệu — Sự tinh tế của tư duy Content — Sự tận tâm từ trái tim."',
+                heroIntro: "Tôi là một chuyên viên tư vấn thế hệ mới, định vị bản thân bằng sự giao thoa giữa kỷ luật hành chính và khả năng thấu cảm sâu sắc. Tôi không chỉ hỗ trợ khách hàng, tôi kiến tạo những trải nghiệm mua sắm đáng tin cậy dựa trên việc thấu hiểu nhu cầu thực tế.",
+                titleSkills: "Bảng Thông Số Năng Lực",
+                hHard: "Kỹ Năng Cứng Bắt Buộc",
+                skInv: "Quản lý Vận hành & Kho bãi (Excel)",
+                skMerch: "Trưng bày & Bảo quản sản phẩm",
+                skSell: "Quy trình Bán hàng & Tư vấn chuyên sâu",
+                hSoft: "Kỹ Năng Mềm Cốt Lõi",
+                skDetail: "Tỉ mỉ & Chú ý đến chi tiết",
+                skEthic: "Đạo đức làm việc & Sự trung thực",
+                skProb: "Giải quyết vấn đề & Khiếu nại",
+                skAdapt: "Khả năng thích nghi & Phản biện",
+                hHigh: "Hiệu Suất Cao & Kỹ Thuật Số",
+                skAi: "Công cụ AI (ChatGPT, Claude)",
+                skData: "Phân tích dữ liệu & Hệ thống CRM",
+                skContent: "Sáng tạo nội dung & Thiết kế đồ họa",
+                titleValues: "Hệ Thống Giá Trị Cam Kết",
+                p1T: "📊 VẬN HÀNH CHUẨN XÁC",
+                p1D: "Cam kết kiểm soát hệ thống hàng hóa, công cụ dụng cụ nhập - xuất - tồn mỗi ngày một cách minh bạch. Biến các con số khô khan thành nền tảng của sự tin cậy.",
+                p2T: "🎨 THẨM MỸ & BẢO QUẢN",
+                p2D: "Tận dụng tư duy sáng tạo để trưng bày sản phẩm thu hút thị giác từ cái nhìn đầu tiên, đồng thời tuân thủ nghiêm ngặt quy trình bảo quản tiêu chuẩn cao cấp.",
+                p3T: "🤝 TƯ VẤN THẤU CẢM",
+                p3D: "Lắng nghe để phân tích Insight, giới thiệu sản phẩm đúng nhu cầu và giải quyết khiếu nại bằng sự điềm tĩnh, chuyên nghiệp, đặt khách hàng làm trọng tâm.",
+                titleProjects: "Kho Minh Chứng Dự Án",
+                pj1T: "Báo Cáo Chiến Lược Vận Hành & Tối Ưu Trải Nghiệm Khách Hàng [Report]",
+                pj1D: "Lộ trình phát triển năng lực tư vấn cao cấp và quy trình phục vụ khách hàng chuẩn mực.",
+                pj2T: "Hệ Thống Phương Pháp Luận Tư Vấn Dựa Trên Insight [Blueprint]",
+                pj2D: "Bộ tài liệu phân tích tâm lý tiêu dùng, kịch bản giao tiếp giải quyết tình huống từ chối và xử lý khiếu nại.",
+                pj3T: "Tối Ưu Hóa Quản Lý Tài Sản & Hệ Thống Báo Cáo [Data Sheet]",
+                pj3D: "Minh chứng ứng dụng công cụ AI và Excel nâng cao trong việc theo dõi, báo cáo dữ liệu kho bãi chính xác.",
+                ftSlogan: "Hãy cùng nhau tạo nên những trải nghiệm khách hàng xuất sắc!",
+                viewPj: "Xem Dự Án"
+            },
+            en: {
+                btn: "VI | Vietnamese",
+                heroSubtitle: "High-End Customer Experience & Retail Consultant",
+                heroSlogan: '"Data-driven precision — Content creator mindset — Heart-centered service."',
+                heroIntro: "A modern consultant driving customer satisfaction through administrative discipline and deep empathy. I don't just solve problems; I create trustworthy retail experiences by truly understanding customer insights.",
+                titleSkills: "Professional Skill Dashboard",
+                hHard: "Mandatory Hard Skills",
+                skInv: "Inventory & Operational Management (Excel)",
+                skMerch: "Visual Merchandising & Preservation",
+                skSell: "Consultative Selling Process",
+                hSoft: "Essential Soft Skills",
+                skDetail: "Attention to Detail & Precision",
+                skEthic: "Work Ethics & Integrity",
+                skProb: "Problem Solving & Complaint Handling",
+                skAdapt: "Adaptability & Critical Thinking",
+                hHigh: "High-Demand Digital Skills",
+                skAi: "AI Tools (ChatGPT, Claude)",
+                skData: "Data Analytics & CRM Systems",
+                skContent: "Content Creation & Graphic Design",
+                titleValues: "Core Value Pillars",
+                p1T: "📊 OPERATIONAL PRECISION",
+                p1D: "Committed to absolute precision in daily inventory management (In/Out/Stock). Turning complex data into a foundation of operational trust.",
+                p2T: "🎨 VISUAL MERCHANDISING",
+                p2D: "Utilizing a creator's mindset for captivating visual merchandising while strictly maintaining high-end product preservation standards.",
+                p3T: "🤝 CONSULTATIVE EMPATHY",
+                p3D: "Active listening to analyze customer insights, offering precise product consultations and resolving complaints with composure and professionalism.",
+                titleProjects: "Case Studies & Evidence",
+                pj1T: "Operational Excellence & Customer Experience Strategy Report [Report]",
+                pj1D: "Advanced consulting capability roadmap and standardized customer service workflow.",
+                pj2T: "Insight-Driven Consultation Methodology [Blueprint]",
+                pj2D: "Comprehensive framework analyzing consumer psychology, objection handling, and complaint management.",
+                pj3T: "Data-Driven Inventory Management & Optimization [Data Sheet]",
+                pj3D: "Demonstrated application of advanced Excel and AI tools to track and report stock data with zero error.",
+                ftSlogan: "Let's build exceptional customer experiences together!",
+                viewPj: "View Project"
+            }
+        };
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'vi' ? 'en' : 'vi';
+            const data = dictionary[currentLang];
+
+            document.getElementById('langBtn').innerText = data.btn;
+            document.getElementById('hero-subtitle').innerText = data.heroSubtitle;
+            document.getElementById('hero-slogan').innerText = data.heroSlogan;
+            document.getElementById('hero-intro').innerText = data.heroIntro;
+            document.getElementById('title-skills').innerText = data.titleSkills;
+            document.getElementById('h-hard-skills').innerText = data.hHard;
+            document.getElementById('sk-inv').innerText = data.skInv;
+            document.getElementById('sk-merch').innerText = data.skMerch;
+            document.getElementById('sk-sell').innerText = data.skSell;
+            document.getElementById('h-soft-skills').innerText = data.hSoft;
+            document.getElementById('sk-detail').innerText = data.skDetail;
+            document.getElementById('sk-ethic').innerText = data.skEthic;
+            document.getElementById('sk-prob').innerText = data.skProb;
+            document.getElementById('sk-adapt').innerText = data.skAdapt;
+            document.getElementById('h-high-skills').innerText = data.hHigh;
+            document.getElementById('sk-ai').innerText = data.skAi;
+            document.getElementById('sk-data').innerText = data.skData;
+            document.getElementById('sk-content').innerText = data.skContent;
+            document.getElementById('title-values').innerText = data.titleValues;
+            document.getElementById('p1-title').innerText = data.p1T;
+            document.getElementById('p1-desc').innerText = data.p1D;
+            document.getElementById('p2-title').innerText = data.p2T;
+            document.getElementById('p2-desc').innerText = data.p2D;
+            document.getElementById('p3-title').innerText = data.p3T;
+            document.getElementById('p3-desc').innerText = data.p3D;
+            document.getElementById('title-projects').innerText = data.titleProjects;
+            document.getElementById('pj1-title').innerText = data.pj1T;
+            document.getElementById('pj1-desc').innerText = data.pj1D;
+            document.getElementById('pj2-title').innerText = data.pj2T;
+            document.getElementById('pj2-desc').innerText = data.pj2D;
+            document.getElementById('pj3-title').innerText = data.pj3T;
+            document.getElementById('pj3-desc').innerText = data.pj3D;
+            document.getElementById('ft-slogan').innerText = data.ftSlogan;
+            
+            const buttons = document.querySelectorAll('.project-btn');
+            buttons.forEach(btn => btn.innerText = data.viewPj);
+        }
+    </script>
+</body>
+</html>
